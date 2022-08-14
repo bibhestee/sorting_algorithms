@@ -31,8 +31,11 @@ void selection_sort(int *array, size_t size)
 				k = j;
 			}
 		}
-		array[k] = array[i];
-		array[i] = min;
+		if (min != array[i])
+		{
+			array[k] = array[i];
+			array[i] = min;
+		}
 		print_array(array, size);
 	}
 }
