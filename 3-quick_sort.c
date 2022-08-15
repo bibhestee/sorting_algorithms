@@ -12,10 +12,7 @@ void quick_sort(int *array, size_t size)
 
 	start = 0;
 	end = (int)(size - 1);
-	/*if (array == NULL || size <= 1)
-	{
-		return;
-	}*/
+
 	sort(array, start, end, size);
 }
 
@@ -32,6 +29,11 @@ void quick_sort(int *array, size_t size)
 void sort(int *array, int start, int end, size_t size)
 {
 	int position;/*--pivot position--*/
+
+	if (array == NULL || size <= 1)
+	{
+		return;
+	}
 
 	if (start < end)
 	{
