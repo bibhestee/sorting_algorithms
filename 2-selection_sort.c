@@ -20,15 +20,14 @@ void selection_sort(int *array, size_t size)
 		return;
 	}
 
-	/*--Check if already sorted--*/
-	if (check_sort(array, size) == 1)
-	{
-		return;
-	}
-
 	for (i = 0; i < size - 1; i++)
 	{
-		check = 0;
+		/*--Check if already sorted--*/
+		if (check_sort(array, size) == 1)
+		{
+			return;
+		}
+
 		min = array[i];
 		for (j = i + 1; j < size; j++)
 		{
@@ -36,7 +35,6 @@ void selection_sort(int *array, size_t size)
 			{
 				min = array[j];
 				k = j;
-				check = 1;
 			}
 		}
 		/*--Only swap if minimum != current value--*/
@@ -44,14 +42,8 @@ void selection_sort(int *array, size_t size)
 		{
 			array[k] = array[i];
 			array[i] = min;
-			check = 1;
 		}
 		print_array(array, size);
-		/*--Check if sorted--*/
-		if (check == 0)
-		{
-			break;
-		}
 	}
 }
 
