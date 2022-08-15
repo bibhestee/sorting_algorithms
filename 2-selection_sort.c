@@ -12,17 +12,12 @@
 
 void selection_sort(int *array, size_t size)
 {
-	size_t i, j, k;
+	size_t i, j, k, check;
 	int min;
 
 	for (i = 0; i < size - 1; i++)
 	{
-
-		/*----Check if already sorted---*/
-		if (check_sort(array, size) == 1)
-		{
-			return;
-		}
+		check = 0;
 		min = array[i];
 		for (j = i + 1; j < size; j++)
 		{
@@ -30,6 +25,7 @@ void selection_sort(int *array, size_t size)
 			{
 				min = array[j];
 				k = j;
+				check = 1;
 			}
 		}
 		/*--Only swap if minimum != current value--*/
@@ -37,8 +33,14 @@ void selection_sort(int *array, size_t size)
 		{
 			array[k] = array[i];
 			array[i] = min;
+			check = 1;
 		}
 		print_array(array, size);
+		/*--Check if already sorted--*/
+		if (check == 0)
+		{
+			break;
+		}
 	}
 }
 
