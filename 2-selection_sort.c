@@ -17,6 +17,13 @@ void selection_sort(int *array, size_t size)
 
 	for (i = 0; i < size - 1; i++)
 	{
+
+		/*----Check if already sorted---*/
+		if (check_sort(array, size) == 1)
+		{
+			print_array(array, size);
+			return;
+		}
 		min = array[i];
 		for (j = i + 1; j < size; j++)
 		{
@@ -33,12 +40,6 @@ void selection_sort(int *array, size_t size)
 			array[i] = min;
 		}
 		print_array(array, size);
-
-		/*----Check if already sorted---*/
-		if (check_sort(array, size) == 1)
-		{
-			return;
-		}
 	}
 }
 
