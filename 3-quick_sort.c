@@ -31,6 +31,10 @@ void sort(int *array, int start, int end, size_t size)
 
 	if (start < end)
 	{
+		if (check_sort(array, size) == 1)
+		{
+			return;
+		}
 		position = partition(array, start, end);
 		print_array(array, size);
 		/*--Sort sub arrays/partitions--*/
@@ -77,4 +81,25 @@ int partition(int *array, int start, int end)
 	array[hold] = array[end];
 	array[end] = pivot;
 	return (end);
+}
+
+/**
+ * check_sort - check if the array is sorted or not
+ * @array: array
+ * @size: size of the array
+ * Return: return 1 if sorted, otherwise -1
+ */
+
+int check_sort(const int *array, size_t size)
+{
+        size_t i;
+
+        for (i = 0; i < size - 1; i++)
+        {
+                if (array[i] > array[i + 1])
+                {
+                        return (-1);
+                }
+        }
+        return (1);
 }
