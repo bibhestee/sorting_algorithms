@@ -30,7 +30,7 @@ void sort(int *array, int start, int end, size_t size)
 {
 	int position;/*--pivot position--*/
 
-	if (array == NULL)
+	if (array == NULL || start >= end)
 	{
 		return;
 	}
