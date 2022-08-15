@@ -21,7 +21,6 @@ void selection_sort(int *array, size_t size)
 		/*----Check if already sorted---*/
 		if (check_sort(array, size) == 1)
 		{
-			print_array(array, size);
 			return;
 		}
 		min = array[i];
