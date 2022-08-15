@@ -20,6 +20,12 @@ void selection_sort(int *array, size_t size)
 		return;
 	}
 
+	/*--Check if already sorted--*/
+	if (check_sort(array, size) == 1)
+	{
+		return;
+	}
+
 	for (i = 0; i < size - 1; i++)
 	{
 		check = 0;
@@ -41,7 +47,7 @@ void selection_sort(int *array, size_t size)
 			check = 1;
 		}
 		print_array(array, size);
-		/*--Check if already sorted--*/
+		/*--Check if sorted--*/
 		if (check == 0)
 		{
 			break;
