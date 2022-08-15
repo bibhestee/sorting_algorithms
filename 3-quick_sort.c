@@ -16,7 +16,10 @@ void quick_sort(int *array, size_t size)
 	{
 		return;
 	}
-	sort(array, start, end, size);
+	else
+	{
+		sort(array, start, end, size);
+	}
 }
 
 /**
