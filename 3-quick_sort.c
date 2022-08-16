@@ -45,11 +45,13 @@ void sort(int *array, int start, int end, size_t size)
 		{
 			return;
 		}
-		position = partition(array, start, end);
-		print_array(array, size);
-		/*--Sort sub arrays/partitions--*/
-		sort(array, start, position - 1, size);
-		sort(array, position + 1, end, size);
+		else
+		{
+			position = partition(array, start, end, size);
+			/*--Sort sub arrays/partitions--*/
+			sort(array, start, position - 1, size);
+			sort(array, position + 1, end, size);
+		}
 	}
 }
 
@@ -58,6 +60,7 @@ void sort(int *array, int start, int end, size_t size)
  * @array: array
  * @start: sub array lower/start boundary
  * @end: sub array upper/end boundary
+ * @size: size of the array
  * Description: The array is divided into sub arrays/partitions
  *   by arranging the elements less than pivot to the left and
  *   elements greater than pivot to the right. The partition
@@ -65,7 +68,7 @@ void sort(int *array, int start, int end, size_t size)
  * Return: The pivot position
  */
 
-int partition(int *array, int start, int end)
+int partition(int *array, int start, int end, size_t size)
 {
 	int pivot, i, j, temp;
 
@@ -82,11 +85,17 @@ int partition(int *array, int start, int end)
 			temp = array[j];
 			array[j] = array[i];
 			array[i] = temp;
+			if (i != j)
+				print_array(array, size);
 		}
 	}
 	/*--Swap pivot to its correct index position--*/
-	array[end] = array[i + 1];
-	array[i + 1] = pivot;
+	if (array[end] < array[i + 1])
+	{
+		array[end] = array[i + 1];
+		array[i + 1] = pivot;
+		print_array(array, size);
+	}
 	return (i + 1);
 }
 
