@@ -12,6 +12,10 @@ void quick_sort(int *array, size_t size)
 
 	start = 0;
 	end = (int)(size - 1);
+	if (array == NULL || size < 2)
+	{
+		return;
+	}
 
 	sort(array, start, end, size);
 }
