@@ -56,37 +56,34 @@ void sort(int *array, int start, int end, size_t size)
  * @end: sub array upper/end boundary
  * Description: The array is divided into sub arrays/partitions
  *   by arranging the elements less than pivot to the left and
- *   elements greater than pivot to the right.
+ *   elements greater than pivot to the right. The partition
+ *   scheme used is the lomuto partition scheme.
  * Return: The pivot position
  */
 
 int partition(int *array, int start, int end)
 {
-	int pivot, hold, temp;
+	int pivot, i, j, temp;
 
-	pivot = array[start];
-	hold = start;
+	pivot = array[end];/*--Select the end as the pivot--*/
+	i = start - 1;/*--Index of smaller element--*/
+	j = start;
 
-	while (start <= end)
+	for (; j <= end - 1; j++)
 	{
-		while (array[start] <= pivot)
+		if (array[j] <= pivot)
 		{
-			start++;
-		}
-		while (array[end] > pivot)
-		{
-			end--;
-		}
-		if (start < end)
-		{
-		temp = array[end];
-		array[end] = array[start];
-		array[start] = temp;
+			i++;
+	/*--Swap the element at index i till it gets to its correct position--*/
+			temp = array[j];
+			array[j] = array[i];
+			array[i] = temp;
 		}
 	}
-	array[hold] = array[end];
-	array[end] = pivot;
-	return (end);
+	/*--Swap pivot to its correct index position--*/
+	array[end] = array[i + 1];
+	array[i + 1] = pivot;
+	return (i + 1);
 }
 
 /**
@@ -98,14 +95,14 @@ int partition(int *array, int start, int end)
 
 int check_sort(const int *array, size_t size)
 {
-        size_t i;
+	size_t i;
 
-        for (i = 0; i < size - 1; i++)
-        {
-                if (array[i] > array[i + 1])
-                {
-                        return (-1);
-                }
-        }
-        return (1);
+	for (i = 0; i < size - 1; i++)
+	{
+		if (array[i] > array[i + 1])
+		{
+			return (-1);
+		}
+	}
+	return (1);
 }
